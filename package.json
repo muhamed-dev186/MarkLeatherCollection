@@ -123,9 +123,7 @@
 	"pnpm": {
 		"ignoredBuiltDependencies": ["@vercel/speed-insights"],
 		"onlyBuiltDependencies": ["@vercel/speed-insights"]
-	},
-	
-	"packageManager": "pnpm@10.0.0"
+	}
 }
 
 
