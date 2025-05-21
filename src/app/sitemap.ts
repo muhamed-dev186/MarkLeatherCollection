@@ -8,7 +8,7 @@ type Item = MetadataRoute.Sitemap[number];
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const products = await Commerce.productBrowse({ first: 100 });
 
-	// Filter out products that do not have a valid slug before mapping
+	// This is the crucial filter for products
 	const productUrls = products
 		.filter(
 			(product) =>
@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				}) satisfies Item,
 		);
 
-	// Filter out categories that do not have a valid slug before mapping
+	// This is the crucial filter for categories
 	const categoryUrls = StoreConfig.categories
 		.filter((category) => typeof category.slug === "string" && category.slug.length > 0)
 		.map(
@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 1,
 		},
 		{
-			url: `${publicUrl}/search`, // Standard practice for a general search page
+			url: `${publicUrl}/search`, // A common sitemap entry for a search page
 			lastModified: new Date(),
 			changeFrequency: "daily",
 			priority: 0.7,
