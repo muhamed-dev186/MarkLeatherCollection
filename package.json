@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		.map(
 			(product) =>
 				({
-					url: `<span class="math-inline">\{publicUrl\}/product/</span>{product.metadata.slug}`,
+					url: `${publicUrl}/product/${product.metadata.slug}`,
 					lastModified: new Date(product.updated * 1000),
 					changeFrequency: "daily",
 					priority: 0.8,
@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		.map(
 			(category) =>
 				({
-					url: `<span class="math-inline">\{publicUrl\}/category/</span>{category.slug}`,
+					url: `${publicUrl}/category/${category.slug}`,
 					lastModified: new Date(),
 					changeFrequency: "daily",
 					priority: 0.5,
@@ -43,12 +43,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			lastModified: new Date(),
 			changeFrequency: "always",
 			priority: 1,
-		},
-		{
-			url: `${publicUrl}/search`, // Added this based on standard practice for /search page
-			lastModified: new Date(),
-			changeFrequency: "daily",
-			priority: 0.7,
 		},
 		...productUrls,
 		...categoryUrls,
